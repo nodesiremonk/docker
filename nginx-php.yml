@@ -21,7 +21,7 @@ services:
     restart: always
     volumes:
       - ./code:/var/www
-      - ./conf/php/php.ini://usr/local/etc/php/php.ini
+      - ./conf/php/php.ini:/usr/local/etc/php/php.ini
     networks:
       - code-network
 
