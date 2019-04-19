@@ -1,0 +1,14 @@
+version: "3"
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+    volumes:
+      - ./code:/var/www
+      - ./conf/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./conf/nginx/php.conf:/etc/nginx/php.conf
+      - ./conf/nginx/site:/etc/nginx/sites-enabled
+      - /etc/letsencrypt:/etc/letsencrypt
