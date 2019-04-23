@@ -474,7 +474,7 @@ function install_backport {
 }
 
 function webuser {
-	usermode -u 82 www-data && groupmod -g 82 www-data
+	usermod -u 82 www-data && groupmod -g 82 www-data
 }
 
 ######################################################################## 
