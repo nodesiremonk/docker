@@ -473,8 +473,10 @@ function install_backport {
 	print_warn "backport has been installed."
 }
 
-function webuser {
-	usermod -u 82 www-data && groupmod -g 82 www-data
+function codeown {
+	USER_ID=$(docker exec -it php id -u www-data)
+        USER_ID="${USER_ID/$'\r'/}"
+        chown -R $USER_ID:$USER_ID $(pwd)/code
 }
 
 ######################################################################## 
@@ -505,8 +507,8 @@ test)
 certbot)
 	install_certbot
 	;;	
-webuser)
-	webuser
+codeown)
+	codeown
 	;;
 system)
 	update_timezone
@@ -532,7 +534,7 @@ system)
   echo '  - docker                         (install docker)'
 	echo '  - site      [domain.tld]         (create nginx vhost and /var/www/$site/public)'
 	echo '  - sslcert   [domain.tld] [email] (get ssl cert for site, install certbot first)'
-	echo '  - webuser                        (change host www-data uid to match that in php container to avoid permission issue)'
+	echo '  - codeown                        (change the owner of code dir to match www-data in php container to avoid permission issue)'
 	echo '  - test                           (Run the classic disk IO and classic cachefly network test)'
 	echo '  '
 	;;
