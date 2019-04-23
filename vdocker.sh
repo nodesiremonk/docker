@@ -473,6 +473,10 @@ function install_backport {
 	print_warn "backport has been installed."
 }
 
+function webuser {
+	usermode -u 82 www-data && groupmod -g 82 www-data
+}
+
 ######################################################################## 
 # START OF PROGRAM
 ########################################################################
@@ -501,6 +505,9 @@ test)
 certbot)
 	install_certbot
 	;;	
+webuser)
+	webuser
+	;;
 system)
 	update_timezone
 	remove_unneeded
@@ -525,6 +532,7 @@ system)
   echo '  - docker                         (install docker)'
 	echo '  - site      [domain.tld]         (create nginx vhost and /var/www/$site/public)'
 	echo '  - sslcert   [domain.tld] [email] (get ssl cert for site, install certbot first)'
+	echo '  - webuser                        (change host www-data uid to match that in php container to avoid permission issue)'
 	echo '  - test                           (Run the classic disk IO and classic cachefly network test)'
 	echo '  '
 	;;
