@@ -307,7 +307,7 @@ server {
 #}
 END
 	
-	invoke-rc.d nginx restart
+	/usr/bin/docker exec -it nginx nginx -s reload
 
 	print_warn "New site successfully installed."
 }
