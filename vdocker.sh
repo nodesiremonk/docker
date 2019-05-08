@@ -473,10 +473,13 @@ function install_backport {
 	print_warn "backport has been installed."
 }
 
-function codeown {
-	USER_ID=$(docker exec -it php id -u www-data)
-        USER_ID="${USER_ID/$'\r'/}"
-        chown -R $USER_ID:$USER_ID $(pwd)/code
+function setowner {
+	CODE_ID=$(docker exec -it php id -u www-data)
+        CODE_ID="${CODE_ID/$'\r'/}"
+        chown -R $CODE_ID:$CODE_ID $(pwd)/code
+	SQL_ID=$(docker exec -it mysql id -u mysql)
+        SQL_ID="${SQL_ID/$'\r'/}"
+        chown -R $SQL_ID:$SQL_ID $(pwd)/mysql/data
 }
 
 ######################################################################## 
@@ -507,8 +510,8 @@ test)
 certbot)
 	install_certbot
 	;;	
-codeown)
-	codeown
+setowner)
+	setowner
 	;;
 system)
 	update_timezone
@@ -534,7 +537,7 @@ system)
   echo '  - docker                         (install docker)'
 	echo '  - site      [domain.tld]         (create nginx vhost and /var/www/$site/public)'
 	echo '  - sslcert   [domain.tld] [email] (get ssl cert for site, install certbot first)'
-	echo '  - codeown                        (change the owner of code dir to match www-data in php container to avoid permission issue)'
+	echo '  - setowner                       (change owner of code and mysql/data dir to avoid permission issue)'
 	echo '  - test                           (Run the classic disk IO and classic cachefly network test)'
 	echo '  '
 	;;
