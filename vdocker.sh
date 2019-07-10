@@ -480,6 +480,7 @@ function setowner {
 	SQL_ID=$(docker exec -it mysql id -u mysql)
         SQL_ID="${SQL_ID/$'\r'/}"
         chown -R $SQL_ID:$SQL_ID $(pwd)/mysql/data
+	chown -R $SQL_ID:$SQL_ID $(pwd)/log/mysql
 }
 
 ######################################################################## 
