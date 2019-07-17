@@ -1,0 +1,1 @@
+44 4 * * 6 /usr/bin/docker exec -it nginx nginx -s reload
