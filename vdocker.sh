@@ -463,7 +463,7 @@ function install_docker {
 	apt update && apt -y install docker-ce docker-ce-cli containerd.io
 	# might need to reboot here
 	# change 1.24.0 to latest version
-	curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+	curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 	chmod +x /usr/local/bin/docker-compose
 }
 
