@@ -1,6 +1,6 @@
 domains = domain.tld
 rsa-key-size = 4096
-server = https://acme-v01.api.letsencrypt.org/directory
+server = https://acme-v02.api.letsencrypt.org/directory
 email = email@domain.tld
 text = True
 authenticator = webroot
