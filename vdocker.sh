@@ -172,8 +172,8 @@ domains = $1
 # increase key size
 rsa-key-size = 4096
 
-# the current closed beta (as of 2015-Nov-07) is using this server
-server = https://acme-v01.api.letsencrypt.org/directory
+# the current server for acme v2
+server = https://acme-v02.api.letsencrypt.org/directory
 
 # this address will receive renewal reminders
 email = $2
