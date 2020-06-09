@@ -172,8 +172,8 @@ domains = $1
 # increase key size
 rsa-key-size = 4096
 
-# the current server for acme v2
-server = https://acme-v02.api.letsencrypt.org/directory
+# the current server for acme v2, not really neccessary
+# server = https://acme-v02.api.letsencrypt.org/directory
 
 # this address will receive renewal reminders
 email = $2
@@ -462,8 +462,8 @@ function install_docker {
 	add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 	apt update && apt -y install docker-ce docker-ce-cli containerd.io
 	# might need to reboot here
-	# change 1.24.0 to latest version
-	curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+	# change 1.26.0 to latest version
+	curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 	chmod +x /usr/local/bin/docker-compose
 }
 
