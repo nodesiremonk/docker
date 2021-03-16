@@ -22,8 +22,10 @@ services:
     image: composer:latest
     container_name: composer
     restart: always
-    networks:
-      - code-network
+    volumes:
+      - ./code:/var/www
+#    networks:
+#      - code-network
     links:
       - php
   php:
