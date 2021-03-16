@@ -16,17 +16,17 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt
     networks:
       - code-network
-    links:
+    depends_on:
       - php
   composer:
     image: composer:latest
     container_name: composer
     restart: always
     volumes:
-      - ./code:/var/www
-#    networks:
-#      - code-network
-    links:
+      - ./code:/app
+    networks:
+      - code-network
+    depends_on:
       - php
   php:
     build:
@@ -39,7 +39,7 @@ services:
       - ./conf/php/php.ini:/usr/local/etc/php/php.ini
     networks:
       - code-network
-    links:
+    depends_on:
       - mysql
   mysql:
     image: mysql:latest
