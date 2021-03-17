@@ -16,7 +16,7 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt
     networks:
       - code-network
-    links:
+    depends_on:
       - php
   php:
     image: php:fpm-alpine
