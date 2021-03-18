@@ -452,14 +452,22 @@ function update_upgrade {
 }
 
 function install_certbot {
-	apt-get -y install certbot -t $(lsb_release -cs)-backports
+	apt install snapd
+	snap install core
+	snap refresh core
+	snap install --classic certbot
+	ln -s /snap/bin/certbot /usr/bin/certbot
+	# old method => apt-get -y install certbot -t $(lsb_release -cs)-backports
 	print_warn "Certbot has been installed."
 }
 
 function install_docker {
+	apt-get remove docker docker-engine docker.io containerd runc
 	apt update && apt -y install apt-transport-https ca-certificates curl gnupg lsb-release
-	curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-	add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+	curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+	# old method ==> curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+	echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+	# old method ==> add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 	apt update && apt -y install docker-ce docker-ce-cli containerd.io
 	# might need to reboot here
 	# change 1.28.5 to latest version
@@ -533,9 +541,10 @@ system)
 	echo 'Available options (in recomended order):'
 	echo '  - system                         (remove unneeded, upgrade system, install software)'
 	echo '  - iptables  [port]               (setup basic firewall with HTTP(S) open)'
-	echo '  - backport                       (install backport repo, required for certbot)'
-  echo '  - certbot                        (install Certbot from backports)'
-  echo '  - docker                         (install docker)'
+	#echo '  - backport                       (install backport repo, required for certbot)'
+  	#echo '  - certbot                        (install Certbot from backports)'
+  	echo '  - certbot                        (install Certbot from snap)'
+	echo '  - docker                         (install docker)'
 	echo '  - site      [domain.tld]         (create nginx vhost and /var/www/$site/public)'
 	echo '  - sslcert   [domain.tld] [email] (get ssl cert for site, install certbot first)'
 	echo '  - setowner                       (change owner of code and mysql/data dir to avoid permission issue)'
