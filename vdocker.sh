@@ -452,7 +452,7 @@ function update_upgrade {
 }
 
 function install_certbot {
-	apt install snapd
+	apt -y install snapd
 	snap install core
 	snap refresh core
 	snap install --classic certbot
