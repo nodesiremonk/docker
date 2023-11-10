@@ -15,3 +15,7 @@ alias artisan='docker exec -it php php /var/www/${PWD##*/}/artisan'
 alias node='docker run --rm -it -v $PWD:/usr/src/app -w /usr/src/app node:alpine'
 alias npm='docker run --rm -it -v $PWD:/usr/src/app -w /usr/src/app node:alpine npm'
 alias npx='docker run --rm -it -v $PWD:/usr/src/app -w /usr/src/app node:alpine npx'
+alias vitedev='docker run --name vitedev --net=docker_code-network --rm -d -v $PWD:/usr/src/app -w /usr/src/app node:alpine npm run dev'
+alias cfpage='docker run --name cfpage --net=docker_code-network --rm -it -v $PWD:/usr/src/app -w /usr/src/app wrangler:latest wrangler pages dev --local-protocol=https'
+alias wrangler='docker run --name wrangler --net=docker_code-network --rm -it -v $PWD:/usr/src/app -w /usr/src/app wrangler:latest wrangler'
+alias dive="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock wagoodman/dive:latest"
