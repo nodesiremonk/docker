@@ -268,6 +268,18 @@ server {
 		
 	}
 
+ 	# use nginx as reverse proxy, need to comment out the conf above
+        #location / {
+        #        # user docker internal DNS
+        #        resolver 127.0.0.11 valid=30s;
+        #        # set parameter so nginx will start even if upstream is down
+        #        set $upstream https://containername:443;
+        #        proxy_pass $upstream;
+        #        proxy_buffering off;
+        #        proxy_set_header Host $host;
+        #        proxy_ssl_server_name on;
+        #}
+
 	location = /favicon.ico {
 		log_not_found off;
 		access_log off;
