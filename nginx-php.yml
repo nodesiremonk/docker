@@ -25,6 +25,7 @@ services:
     volumes:
       - ./code:/var/www
       - ./conf/php/php.ini:/usr/local/etc/php/php.ini
+      - ./conf/php/php-fpm.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
     networks:
       - code-network
 
