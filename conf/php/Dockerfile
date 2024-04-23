@@ -7,8 +7,10 @@
 # "postgresql-dev" can be deleted after installation.  Will add ~12MB to image.  "pgsql" is optional if only use PDO, but only add ~0.2MB
 
 # To add imagick extension, need to "apk add autoconf g++ make imagemagick-dev \ 
-# && pecl install imagick && docker-php-ext-enable imagick && rm -rf /tmp/pear && apk del g++ make
-# and "imagemagick-dev" CANNOT be deleted after installation
+# && pecl install imagick && docker-php-ext-enable imagick && rm -rf /tmp/pear && apk del g++ make"
+# "imagemagick-dev" CANNOT be deleted after installation
+
+# To add zip extension, do "apk add zip libzip-dev && docker-php-ext-configure zip && docker-php-ext-install zip" Add ~2MB
 
 FROM php:fpm-alpine
 RUN apk add --no-cache libpng libpng-dev libjpeg-turbo-dev libwebp-dev zlib-dev libxpm-dev \
