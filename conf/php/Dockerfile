@@ -12,6 +12,8 @@
 
 # To add zip extension, do "apk add zip libzip-dev && docker-php-ext-configure zip && docker-php-ext-install zip" Add ~2MB
 
+# To add soap extension, do "apk add libxml2-dev && docker-php-ext-install soap"  Add ~1MB
+
 FROM php:fpm-alpine
 RUN apk add --no-cache libpng libpng-dev libjpeg-turbo-dev libwebp-dev zlib-dev libxpm-dev \
     && docker-php-ext-install gd bcmath pdo_mysql \
