@@ -1,1 +1,2 @@
-44 4 * * 6 /usr/bin/docker exec -t nginx nginx -s reload
+44 4 * * 4 /usr/bin/docker exec -t nginx nginx -s reload
+33 3 * * 3 /usr/bin/docker run -t --rm --name certbot -v /etc/letsencrypt:/etc/letsencrypt certbot/certbot renew
