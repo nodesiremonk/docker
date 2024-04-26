@@ -28,3 +28,7 @@ alias sqlite3='docker run --rm -it --user 82:82 -v $PWD:/workspace -w /workspace
 # need to change "/path/to/code/letsencrypt" and email address here
 alias certbot='docker run -it --rm --name certbot -v /etc/letsencrypt:/etc/letsencrypt -v /path/to/code/letsencrypt:/tmp/letsencrypt certbot/certbot certonly --webroot --agree-tos --renew-by-default --text --email name@domain.com -w /tmp/letsencrypt -d'
 alias certbotrenew='docker run -it --rm --name certbot -v /etc/letsencrypt:/etc/letsencrypt certbot/certbot renew'
+# need to build psql-client with Dockerfile
+alias psql='docker run -it --rm psql-client psql'
+alias pg_dump='docker run -it --rm psql-client pg_dump'
+alias pg_restore='docker run -it --rm psql-client pg_restore'
