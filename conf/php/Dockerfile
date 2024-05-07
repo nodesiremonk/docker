@@ -1,3 +1,8 @@
+# Use `install-php-extensions` script is easier but the final image size is bigger
+# FROM php:7.2-cli
+# ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+# RUN install-php-extensions gd xdebug
+
 # To add PHP intl extension
 # `apk add icu-dev && docker-php-ext-configure intl && docker-php-ext-install intl`
 # "icu-dev" CANNOT be deleted after installation. Add ~43MB to image
