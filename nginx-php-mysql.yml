@@ -35,7 +35,8 @@ services:
   mysql:
     image: mysql:latest
     container_name: mysql
-    # command: --default-authentication-plugin=mysql_native_password
+    # following command is required from v8.4.0
+    command: --mysql-native-password=ON
     restart: always
     volumes:
       - ./mysql/data:/var/lib/mysql
