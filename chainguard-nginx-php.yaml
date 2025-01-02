@@ -1,0 +1,35 @@
+version: "3"
+services:
+  web:
+    image: cgr.dev/chainguard/nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+    volumes:
+      - ./code:/app
+      - ./conf/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./conf/nginx/php.conf:/etc/nginx/php.conf
+      - ./conf/nginx/site:/etc/nginx/sites-enabled
+      - ./log/nginx:/var/log/nginx
+      - /etc/letsencrypt:/etc/letsencrypt
+    networks:
+      - code-network
+    depends_on:
+      - php
+  php:
+    image: cgr.dev/chainguard/php:latest-fpm
+    container_name: php
+    working_dir: /app
+    restart: always
+    volumes:
+      - ./code:/app
+      - ./conf/php/php.ini:/usr/local/etc/php/php.ini
+      - ./conf/php/php-fpm.conf:/usr/local/etc/php-fpm.d/zzz-php-fpm.conf
+    networks:
+      - code-network
+
+networks:
+  code-network:
+    driver: bridge
