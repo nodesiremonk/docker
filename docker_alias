@@ -29,7 +29,7 @@ alias wrangler='docker run --name wrangler --net=docker_code-network --rm -it -v
 alias dive='docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock wagoodman/dive:latest'
 alias go='docker run --rm -it -v $PWD:/app -w /app golang:alpine go'
 alias sqlite3='docker run --rm -it --user 82:82 -v $PWD:/workspace -w /workspace keinos/sqlite3:latest sqlite3'
-# need to change "/path/to/code/letsencrypt" and email address here
+# run "certbot domain.name" to get certificate. Need to change "/path/to/code/letsencrypt" and email address here
 alias certbot='docker run -it --rm --name certbot -v /etc/letsencrypt:/etc/letsencrypt -v /path/to/code/letsencrypt:/tmp/letsencrypt certbot/certbot certonly --webroot --agree-tos --renew-by-default --text --email name@domain.com -w /tmp/letsencrypt -d'
 alias certbotrenew='docker run -it --rm --name certbot -v /etc/letsencrypt:/etc/letsencrypt -v /path/to/code/letsencrypt:/tmp/letsencrypt certbot/certbot renew'
 # need to build psql-client with Dockerfile
