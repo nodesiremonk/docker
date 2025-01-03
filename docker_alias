@@ -22,6 +22,7 @@ alias npm='docker run --rm -it -v $PWD:/usr/src/app -w /usr/src/app node:alpine 
 alias npx='docker run --rm -it -v $PWD:/usr/src/app -w /usr/src/app node:alpine npx'
 # might need to change user/group/code-dir here
 alias co='chown -R webdev:webdev /home/webdev/docker/code'
+alias cocert='chown -R webdev /etc/letsencrypt/live && chown -R webdev /etc/letsencrypt/archive'
 alias vitedev='docker run --name vitedev --net=docker_code-network --rm -d -v $PWD:/usr/src/app -w /usr/src/app node:alpine npm run dev'
 alias svelte='docker run --name svelte --net=docker_code-network --rm -d -v $PWD:/usr/src/app -w /usr/src/app node:alpine npm run dev -- --host'
 alias cfpage='docker run --name cfpage --net=docker_code-network --rm -it -v $PWD:/usr/src/app -w /usr/src/app wrangler:latest wrangler pages dev --local-protocol=https'
