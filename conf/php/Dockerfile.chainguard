@@ -1,0 +1,7 @@
+FROM cgr.dev/chainguard/php:latest-fpm-dev AS builder
+USER root
+RUN apk add --no-cache php-opcache
+
+FROM cgr.dev/chainguard/php:latest-fpm
+COPY --from=builder /usr/lib/php/modules/ /usr/lib/php/modules/
+COPY --from=builder /etc/php/conf.d/ /etc/php/conf.d/
