@@ -19,13 +19,16 @@ services:
     depends_on:
       - php
   php:
-    image: cgr.dev/chainguard/php:latest-fpm
+    build:
+      context: ./conf/php
+      dockerfile: Dockerfile.chainguard
     container_name: php
     working_dir: /var/www
     restart: always
     volumes:
       - ./code:/var/www
       - ./conf/php/php.ini:/etc/php/php.ini
+      - ./conf/php/opcache.ini:/etc/php/conf.d/zz-opcache.ini
       - ./conf/php/php-fpm.conf:/etc/php/php-fpm.d/zzz-php-fpm.conf
     networks:
       - code-network
