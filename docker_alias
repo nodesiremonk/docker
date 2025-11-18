@@ -37,3 +37,6 @@ alias certbotrenew='docker run -it --rm --name certbot -v /etc/letsencrypt:/etc/
 alias psql='docker run -it --rm psql-client psql'
 alias pg_dump='docker run -it --rm psql-client pg_dump'
 alias pg_restore='docker run -it --rm psql-client pg_restore'
+# update url for opcache reset
+alias opcache-reset='curl -fsSL "https://opcache-reset.com" | grep -q "^OK$" && echo "OPcache is reset" || echo "Failed to reset OPcache"'
+alias deploy='git pull && co && opcache-reset'
