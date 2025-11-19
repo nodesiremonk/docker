@@ -19,6 +19,7 @@ services:
     depends_on:
       - php
   php:
+    #image: cgr.dev/chainguard/php:latest-fpm
     build:
       context: ./conf/php
       dockerfile: Dockerfile.chainguard
