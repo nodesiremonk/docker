@@ -19,10 +19,10 @@ services:
     depends_on:
       - php
   php:
-    #image: cgr.dev/chainguard/php:latest-fpm
-    build:
-      context: ./conf/php
-      dockerfile: Dockerfile.chainguard
+    image: cgr.dev/chainguard/php:latest-fpm
+    #build:
+      #context: ./conf/php
+      #dockerfile: Dockerfile.chainguard
     container_name: php
     working_dir: /var/www
     restart: always
