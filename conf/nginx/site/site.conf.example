@@ -75,6 +75,10 @@ server {
         #        add_header Cache-Control "no-cache, no-store, must-revalidate, max-age=0";
         #        add_header Pragma "no-cache";
         #}
+        # for SPA
+        #location / {
+        #        try_files $uri $uri/ /index.html;
+        #}
         location = /favicon.ico {
                 log_not_found off;
                 access_log off;
