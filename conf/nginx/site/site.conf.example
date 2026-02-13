@@ -69,7 +69,7 @@ server {
         #        proxy_set_header Host $host;
         #        proxy_ssl_server_name on;
         #}
-        # disable cache for dev server
+        # disable cache for dev server, can either inside "location" blocks or outside (in server level)
         #location / {
         #        expires off;
         #        add_header Cache-Control "no-cache, no-store, must-revalidate, max-age=0";
