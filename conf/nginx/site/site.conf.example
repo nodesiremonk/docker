@@ -69,6 +69,12 @@ server {
         #        proxy_set_header Host $host;
         #        proxy_ssl_server_name on;
         #}
+        # disable cache for dev server
+        #location / {
+        #        expires off;
+        #        add_header Cache-Control "no-cache, no-store, must-revalidate, max-age=0";
+        #        add_header Pragma "no-cache";
+        #}
         location = /favicon.ico {
                 log_not_found off;
                 access_log off;
