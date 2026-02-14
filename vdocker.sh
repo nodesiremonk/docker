@@ -279,7 +279,16 @@ server {
         #        proxy_set_header Host $host;
         #        proxy_ssl_server_name on;
         #}
-
+	# disable cache for dev server, can either inside "location" blocks or outside (in server level)
+    #location / {
+    #        expires off;
+    #        add_header Cache-Control "no-cache, no-store, must-revalidate, max-age=0";
+    #        add_header Pragma "no-cache";
+    #}
+    # for SPA
+    #location / {
+    #        try_files $uri $uri/ /index.html;
+    #}
 	location = /favicon.ico {
 		log_not_found off;
 		access_log off;
