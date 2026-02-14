@@ -42,26 +42,23 @@ alias pg_restore='docker run -it --rm psql-client pg_restore'
 alias opcache-reset='curl -fsSL "https://opcache-reset.com" | grep -q "^OK$" && echo "OPcache is reset" || echo "Failed to reset OPcache"'
 alias deploy='git pull && co && opcache-reset'
 # change BASE to match nginx conf file
-switchdev() {
-  BASE="/var/www/test"
-  TARGET="$BASE/$1"
+devdir() {
+  BASE="/path/to/dev/dir/match/nginx/conf"
+  CURRENT="current"
 
   if [ -z "$1" ]; then
-    echo "Available sites:"
-    ls -1 "$BASE" | grep -v current
+    echo "Usage: devdir <relative-path>"
     return
   fi
 
-  if [ -d "$TARGET" ]; then
-    ln -sfn "$TARGET" "$BASE/current"
+  cd "$BASE" || return
+
+  TARGET="$1"
+
+  if [ -d "$TARGET" ] && [ -f "$TARGET/index.html" ]; then
+    ln -sfn "$TARGET" "$CURRENT"
     echo "✅ Switched to $1"
   else
-    echo "❌ Site '$1' not found"
-    echo "Available sites:"
-    ls -1 "$BASE" | grep -v current
+    echo "❌ Invalid path"
   fi
-}
-# change folder to match nginx conf file
-currentdev() {
-  readlink -f /var/www/test/current
 }
