@@ -62,3 +62,24 @@ devdir() {
     echo "❌ Invalid path"
   fi
 }
+devphp() {
+  BASE="/path/to/devphp/dir/match/nginx/conf"
+  CURRENT="current"
+
+  if [ -z "$1" ]; then
+    echo "Usage: devdir <relative-path>"
+    return
+  fi
+
+  cd "$BASE" || return
+
+  TARGET="$1"
+
+  if [ -d "$TARGET" ] && [ -f "$TARGET/public/index.php" ]; then
+    ln -sfn "$TARGET" "$CURRENT"
+    echo "✅ Switched to $1"
+    opcache-reset
+  else
+    echo "❌ Invalid path"
+  fi
+}
